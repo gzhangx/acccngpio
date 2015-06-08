@@ -15,6 +15,7 @@ var server = app.listen(3001, function(){
   console.log('app started at %s %s', host,port);
 });
 
+console.log('server.js end');
 //var fs = require('fs');
 //fs.readFile('public/head.html','utf8', function(err,data){
 //console.log('read err='+err);
