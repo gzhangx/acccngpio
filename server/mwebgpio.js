@@ -1,7 +1,7 @@
 'use strict';
 
 var gpio = require('onoff').Gpio,
-leds = [],
+leds = {},
 led = new gpio(14, 'out'),
 button = new gpio(4, 'in','both');
 button.watch(function(err, value){
@@ -14,11 +14,11 @@ for (var i = 0; i < idnames.length; i++) {
   console.log('setting gpio '+idnames[i]+' to out');
   curl.writeSync(1);
   console.log('setting gpio '+idnames[i]+' to out done');
-  leds.push(curl);
+  leds['s'+idnames[i]] =(curl);
 }
-for (var i = 0; i < leds.length; i++) {
+for (var i = 0; i < idnames.length; i++) {
   console.log('set leds '+i);
-  leds[i].writeSync(1);
+  leds['s'+idnames[i]].writeSync(1);
 }
 led.writeSync(1);
 
@@ -30,9 +30,9 @@ exports.gpioControl = function(req, rsp) {
   }
   console.log('req.id ' +  query.id+' stat '+ query.stat + ' ' + parseInt(query.stat));
   var gpioVal = parseInt(query.stat);
-  if (gpioVal === 0 || gpioVal === 1) {
+  //if (gpioVal === 0 || gpioVal === 1) {
     console.log('gpio ' + gpioVal);
-    leds[req.id].writeSync(gpioVal);
-  }
+    leds['s'+gpioVal].writeSync(gpioVal);
+  //}
   rsp.jsonp({io: gpioVal, id: query.id});
 }
