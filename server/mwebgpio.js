@@ -31,8 +31,8 @@ exports.gpioControl = function(req, rsp) {
   console.log('req.id ' +  query.id+' stat '+ query.stat + ' ' + parseInt(query.stat));
   var gpioVal = parseInt(query.stat);
   //if (gpioVal === 0 || gpioVal === 1) {
-    console.log('gpio ' + gpioVal);
-    leds['s'+gpioVal].writeSync(gpioVal);
+    console.log('gpio s' + query.id);
+    leds['s'+query.id].writeSync(gpioVal);
   //}
   rsp.jsonp({io: gpioVal, id: query.id});
 }
