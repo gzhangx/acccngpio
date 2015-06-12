@@ -8,7 +8,7 @@ button.watch(function(err, value){
  console.log(value);
 });
 
-var idnames = [2,3,17];
+var idnames = [2,3,17,18,27];//,22,23,24];
 for (var i = 0; i < idnames.length; i++) {
   var curl = new gpio(idnames[i], 'out');
   console.log('setting gpio '+idnames[i]+' to out');
@@ -21,6 +21,10 @@ for (var i = 0; i < idnames.length; i++) {
   leds['s'+idnames[i]].writeSync(1);
 }
 led.writeSync(1);
+
+exports.gpioGet = function(req, rsp) {
+  rsp.jsonp(idnames);
+}
 
 exports.gpioControl = function(req, rsp) {
   var query = req.query || null;

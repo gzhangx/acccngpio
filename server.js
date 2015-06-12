@@ -6,7 +6,8 @@ app.get('/', function(req,res){
   res.send('test');
 });
 
-app.get('/gpio', webGpio.gpioControl);
+app.get('/gpio/all', webGpio.gpioGet);
+app.get('/gpio/ctrl', webGpio.gpioControl);
 app.use('/public',express.static('public'));
 
 var server = app.listen(3001, function(){
