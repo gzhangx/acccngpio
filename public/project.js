@@ -22,7 +22,7 @@
             $scope.setGpio = function (id, stat) {
                 gpio.setGpio(id, stat);
             };
-            $scope.gpios = [2,4];
+            $scope.gpios = [];
             gpio.getGpio(function(data){
                 $scope.gpios = data;
             });
